@@ -21,11 +21,9 @@
             --ink-40:       rgba(10,15,29,0.40);
             --ink-18:       rgba(10,15,29,0.18);
             --ink-08:       rgba(10,15,29,0.08);
-            
             --f-display:    'Cormorant Garamond', Georgia, serif;
             --f-body:       'DM Sans', system-ui, sans-serif;
             --f-mono:       'DM Mono', monospace;
-            
             --ease:         cubic-bezier(0.22, 1, 0.36, 1);
             --radius-sm:    2px;
         }
@@ -62,6 +60,342 @@
             pointer-events: none;
         }
 
+        .header {
+            text-align: center;
+            padding: 5rem 2rem 2.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .eyebrow {
+            font-family: var(--f-mono);
+            font-size: clamp(8px, 0.65vw, 9.5px);
+            font-weight: 400;
+            letter-spacing: 0.20em;
+            text-transform: uppercase;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .eyebrow::before, .eyebrow::after {
+            content: ''; display: block; width: 28px; height: 1px;
+            background: currentColor; opacity: 0.5;
+        }
+
+        .header h1 {
+            font-family: var(--f-display);
+            font-size: clamp(32px, 4vw, 50px);
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            line-height: 1.10;
+            color: var(--ink);
+            margin-bottom: 1rem;
+        }
+
+        .header h1 em { font-style: italic; color: var(--navy); }
+        .header p { font-size: clamp(14px, 1.2vw, 17px); font-weight: 300; color: var(--ink-60); max-width: 600px; margin: 0 auto; }
+
+        .instruction-box {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            background: var(--gold-pale);
+            border: 1px solid rgba(191, 151, 90, 0.25);
+            border-radius: var(--radius-sm);
+            padding: 1.2rem 1.8rem;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            box-shadow: 0 4px 20px rgba(10, 15, 29, 0.02);
+        }
+
+        .instruction-box svg { flex-shrink: 0; stroke: var(--gold); margin-top: 2px; }
+
+        .instruction-box p {
+            font-size: 14px;
+            color: var(--ink-60);
+            font-weight: 300;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .instruction-box strong {
+            color: var(--navy);
+            font-weight: 500;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .voter-info {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .voter-info label {
+            font-family: var(--f-mono);
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--navy);
+        }
+
+        .voter-info input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 1px solid var(--ink-18);
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(10px);
+            font-family: var(--f-body);
+            font-size: 15px;
+            color: var(--ink);
+            transition: var(--ease) 0.3s;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .card-label {
+            display: block;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .card-label input[type="checkbox"] {
+            position: absolute; opacity: 0; width: 0; height: 0;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(14px);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--ink-08);
+            overflow: hidden;
+            box-shadow: 0 6px 32px rgba(10, 15, 29, 0.02);
+            transition: var(--ease) 0.5s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .card-image-wrapper {
+            width: 100%;
+            height: 180px;
+            background-color: var(--ink-08);
+            overflow: hidden;
+            border-bottom: 1px solid var(--ink-08);
+        }
+
+        .card-image-wrapper img {
+            width: 100%; height: 100%; object-fit: cover;
+            filter: grayscale(100%) contrast(1.1);
+            opacity: 0.85;
+            transition: var(--ease) 0.6s;
+        }
+
+        .card:hover .card-image-wrapper img,
+        .card-label input[type="checkbox"]:checked + .card .card-image-wrapper img {
+            filter: grayscale(0%) contrast(1);
+            opacity: 1;
+        }
+
+        .selection-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(10,15,29,0.5) 0%, transparent 50%);
+            opacity: 0;
+            transition: var(--ease) 0.4s;
+            display: flex;
+            padding: 1rem;
+            align-items: flex-start;
+            justify-content: flex-end;
+            z-index: 2;
+        }
+
+        .selection-badge {
+            background: var(--navy);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-family: var(--f-mono);
+            font-size: 8.5px;
+            letter-spacing: 0.15em;
+            transform: translateY(-15px);
+            transition: var(--ease) 0.5s;
+        }
+
+        .card-label input[type="checkbox"]:checked + .card .selection-overlay { opacity: 1; }
+        .card-label input[type="checkbox"]:checked + .card .selection-badge { transform: translateY(0); }
+
+        .card-content { padding: 1.8rem 1.5rem; flex-grow: 1; }
+        .card-title { font-family: var(--f-display); font-size: 24px; margin-bottom: 1.2rem; color: var(--ink); }
+
+        .action-panel {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: rgba(243, 237, 226, 0.94);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--ink-08);
+            padding: 1.5rem 3rem;
+            display: flex; justify-content: space-between; align-items: center; z-index: 100;
+        }
+
+        .counter-text { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.15em; color: var(--ink-60); }
+        .progress-segments { display: flex; gap: 6px; margin-top: 8px; }
+        .segment { height: 4px; width: 28px; background: var(--ink-08); border-radius: 2px; }
+        .segment.filled { background: var(--navy); }
+
+        .btn-submit {
+            background: var(--navy); color: white; border: none;
+            padding: 0.9rem 2.5rem; font-size: 13px; text-transform: uppercase;
+            cursor: pointer; transition: 0.3s;
+        }
+
+        .btn-submit:disabled { background: var(--ink-08); cursor: not-allowed; }
+
+        .loader { width: 24px; height: 24px; border: 2px solid var(--ink-18); border-top-color: var(--gold); border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        @media (max-width: 768px) { .action-panel { flex-direction: column; gap: 1rem; text-align: center; } }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="eyebrow">Comité Promotor · Sabana Centro Oriente</div>
+        <h1>Conformación de la Junta Directiva</h1>
+        <p>Tu voz es el principio del crecimiento. Respalda exactamente a los <em>7 equipos</em>.</p>
+    </header>
+
+    <main>
+        <div class="instruction-box">
+            <p><strong>Guía de participación</strong> Haz clic sobre la tarjeta de una plancha para respaldarla.</p>
+        </div>
+
+        <form id="voting-form">
+            <div class="voter-info">
+                <label for="nombreCandidato">Identificación del Votante</label>
+                <input type="text" id="nombreCandidato" placeholder="Ingresa tu nombre completo" required>
+            </div>
+
+            <div class="grid-container" id="tarjetas-container">
+                <div style="grid-column: 1/-1; text-align: center; padding: 4rem;">
+                    <div class="loader" style="margin: 0 auto 1rem;"></div>
+                    <p>Sincronizando propuestas regionales...</p>
+                </div>
+            </div>
+
+            <div class="action-panel">
+                <div class="counter-container">
+                    <span class="counter-text" id="counter-text">0 DE 7 EQUIPOS RESPALDADOS</span>
+                    <div class="progress-segments" id="progress-segments">
+                        <div class="segment"></div><div class="segment"></div><div class="segment"></div>
+                        <div class="segment"></div><div class="segment"></div><div class="segment"></div><div class="segment"></div>
+                    </div>
+                </div>
+                <button type="submit" id="submit-btn" class="btn-submit" disabled>Confirmar Votación</button>
+            </div>
+        </form>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('tarjetas-container');
+            const counterText = document.getElementById('counter-text');
+            const segments = document.querySelectorAll('.segment');
+            const submitBtn = document.getElementById('submit-btn');
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwJcDHhZYp2Lnx0BX-rU7CQUx6MB1Cia5F52KrGW8mjOMvLFa0uTqQI4CNo8d4cA4joKQ/exec';
+
+            // 1. CARGA DINÁMICA
+            fetch(scriptURL)
+                .then(res => res.json())
+                .then(data => {
+                    let html = '';
+                    data.forEach(c => {
+                        const num = c.numero || 0;
+                        const numFmt = num.toString().padStart(2, '0');
+                        // URL de tu repositorio GitHub
+                        const img = `https://raw.githubusercontent.com/DanielFH-blip/Encuesta-Comite-Promotor/main/img/plancha_${num}.jpg`;
+
+                        html += `
+                        <label class="card-label">
+                            <input type="checkbox" name="plancha_${num}" value="${num}" class="plancha-checkbox">
+                            <div class="card">
+                                <div class="selection-overlay"><div class="selection-badge">RESPALDADA</div></div>
+                                <div class="card-image-wrapper">
+                                    <img src="${img}" onerror="this.src='https://via.placeholder.com/400x200?text=Plancha+${numFmt}'">
+                                </div>
+                                <div class="card-content">
+                                    <h3 class="card-title">Plancha ${numFmt}</h3>
+                                    <p><strong>Titular:</strong> ${c.titular || 'Por definir'}<br>
+                                    <strong>Suplente:</strong> ${c.suplente || 'Por definir'}</p>
+                                    <p style="margin-top:10px; font-size:13px; color:var(--ink-60);">${c.propuesta || ''}</p>
+                                </div>
+                            </div>
+                        </label>`;
+                    });
+                    container.innerHTML = html;
+                    activarCheckboxes();
+                })
+                .catch(() => {
+                    container.innerHTML = '<p style="grid-column:1/-1; text-align:center;">Error de conexión. Verifica los permisos de Google Apps Script.</p>';
+                });
+
+            // 2. LÓGICA DE SELECCIÓN
+            function activarCheckboxes() {
+                const boxes = document.querySelectorAll('.plancha-checkbox');
+                boxes.forEach(cb => {
+                    cb.addEventListener('change', () => {
+                        const selected = document.querySelectorAll('.plancha-checkbox:checked').length;
+                        if (selected > 7) { cb.checked = false; return; }
+                        
+                        segments.forEach((s, i) => s.classList.toggle('filled', i < selected));
+                        counterText.textContent = `${selected} DE 7 EQUIPOS RESPALDADOS`;
+                        submitBtn.disabled = selected !== 7;
+                    });
+                });
+            }
+
+            // 3. ENVÍO DE DATOS
+            document.getElementById('voting-form').addEventListener('submit', e => {
+                e.preventDefault();
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Registrando...';
+
+                const seleccionadas = Array.from(document.querySelectorAll('.plancha-checkbox:checked')).map(cb => cb.value);
+                const payload = {
+                    nombre: document.getElementById('nombreCandidato').value,
+                    planchasSeleccionadas: seleccionadas
+                };
+
+                fetch(scriptURL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(payload)
+                }).then(() => {
+                    submitBtn.textContent = '¡Voto Registrado!';
+                }).catch(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Error. Reintentar';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
         .header {
             text-align: center;
             padding: 5rem 2rem 2.5rem;
