@@ -472,11 +472,11 @@
                     container.innerHTML = '<p style="text-align:center; grid-column: 1/-1;">Error al cargar.</p>';
                 });
 
-            // 2. Generar tarjetas (Blindado contra mayúsculas/minúsculas)
+            // 2. Generar tarjetas (Con conexión directa a GitHub)
             function generarTarjetas(candidatos) {
                 let html = '';
                 candidatos.forEach(c => {
-                    // Normalizamos los datos de cada candidato para que no importen las mayúsculas de Sheets
+                    // Normalizamos los datos de cada candidato
                     const dataNormalizada = {};
                     Object.keys(c).forEach(key => {
                         dataNormalizada[key.toLowerCase().trim()] = c[key];
@@ -487,7 +487,8 @@
                     const sup = dataNormalizada.suplente || 'Por definir';
                     const pro = dataNormalizada.propuesta || 'Descripción de la propuesta.';
 
-                    const imgUrl = `https://raw.githubusercontent.com/TU_USUARIO/TU_REPOSITORIO/main/img/plancha_${num}.jpg`;
+                    // Ruta configurada para tu repositorio específico
+                    const imgUrl = `https://raw.githubusercontent.com/DanielFH-blip/Encuesta-Comite-Promotor/main/img/plancha_${num}.jpg`;
                     const numFmt = num.toString().padStart(2, '0');
 
                     html += `
