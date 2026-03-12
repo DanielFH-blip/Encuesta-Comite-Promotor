@@ -11,21 +11,21 @@
 
     <style>
         :root {
-            --bg:           #F3EDE2;
+            --bg:           #F8F5F0; 
             --navy:         #1C3856;
             --navy-2:       #2B527A;
             --gold:         #BF975A;
-            --gold-pale:    rgba(191,151,90,0.10);
+            --gold-pale:    rgba(191,151,90,0.06);
             --ink:          #0A0F1D;
             --ink-60:       rgba(10,15,29,0.60);
             --ink-40:       rgba(10,15,29,0.40);
             --ink-18:       rgba(10,15,29,0.18);
-            --ink-08:       rgba(10,15,29,0.08);
+            --ink-08:       rgba(10,15,29,0.06);
             --f-display:    'Cormorant Garamond', Georgia, serif;
             --f-body:       'DM Sans', system-ui, sans-serif;
             --f-mono:       'DM Mono', monospace;
-            --ease:         cubic-bezier(0.22, 1, 0.36, 1);
-            --radius-sm:    2px;
+            --ease:         cubic-bezier(0.16, 1, 0.3, 1); 
+            --radius-sm:    6px; 
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,16 +35,18 @@
             background-color: var(--bg);
             color: var(--ink);
             line-height: 1.6;
-            padding-bottom: 140px; 
+            padding-bottom: 160px; 
             position: relative;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body::before {
             content: '';
             position: fixed;
             inset: 0;
-            background-image: radial-gradient(rgba(10,15,29,0.035) 1px, transparent 1px);
-            background-size: 26px 26px;
+            background-image: radial-gradient(rgba(10,15,29,0.03) 1px, transparent 1px);
+            background-size: 32px 32px;
             z-index: -1;
             pointer-events: none;
         }
@@ -54,134 +56,157 @@
             position: fixed;
             inset: 0;
             background:
-                radial-gradient(ellipse 55% 40% at 100% 0%, rgba(191,151,90,0.08) 0%, transparent 60%),
-                radial-gradient(ellipse 45% 40% at 0% 100%, rgba(28,56,86,0.06) 0%, transparent 60%);
+                radial-gradient(circle 800px at 100% 0%, rgba(191,151,90,0.06) 0%, transparent 100%),
+                radial-gradient(circle 800px at 0% 100%, rgba(28,56,86,0.04) 0%, transparent 100%);
             z-index: -2;
             pointer-events: none;
         }
 
         .header {
             text-align: center;
-            padding: 5rem 2rem 2.5rem;
-            max-width: 800px;
+            padding: 6rem 2rem 3rem;
+            max-width: 840px;
             margin: 0 auto;
+            transition: opacity 0.6s var(--ease);
         }
 
         .eyebrow {
             font-family: var(--f-mono);
-            font-size: clamp(8px, 0.65vw, 9.5px);
-            font-weight: 400;
-            letter-spacing: 0.20em;
+            font-size: clamp(9px, 0.7vw, 11px);
+            font-weight: 500;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
             color: var(--gold);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            margin-bottom: 1.5rem;
+            gap: 16px;
+            margin-bottom: 2rem;
+            opacity: 0.9;
         }
 
         .eyebrow::before, .eyebrow::after {
-            content: ''; display: block; width: 28px; height: 1px;
-            background: currentColor; opacity: 0.5;
+            content: ''; display: block; width: 40px; height: 1px;
+            background: currentColor; opacity: 0.4;
         }
 
         .header h1 {
             font-family: var(--f-display);
-            font-size: clamp(32px, 4vw, 50px);
+            font-size: clamp(36px, 4.5vw, 56px);
             font-weight: 300;
-            letter-spacing: -0.02em;
-            line-height: 1.10;
-            color: var(--ink);
-            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+            line-height: 1.15;
+            color: var(--navy);
+            margin-bottom: 1.2rem;
         }
 
-        .header h1 em { font-style: italic; color: var(--navy); }
-        .header p { font-size: clamp(14px, 1.2vw, 17px); font-weight: 300; color: var(--ink-60); max-width: 600px; margin: 0 auto; }
+        .header h1 em { 
+            font-style: italic; 
+            color: var(--gold); 
+            font-weight: 400;
+        }
+        
+        .header p { 
+            font-size: clamp(15px, 1.3vw, 18px); 
+            font-weight: 300; 
+            color: var(--ink-60); 
+            max-width: 640px; 
+            margin: 0 auto; 
+            line-height: 1.7;
+        }
 
         .instruction-box {
             max-width: 800px;
-            margin: 0 auto 2rem;
-            background: var(--gold-pale);
-            border: 1px solid rgba(191, 151, 90, 0.25);
-            border-radius: var(--radius-sm);
-            padding: 1.2rem 1.8rem;
+            margin: 0 auto 3rem;
+            background: #FFFFFF;
+            border-left: 3px solid var(--gold);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            padding: 1.5rem 2rem;
             display: flex;
-            gap: 16px;
+            gap: 20px;
             align-items: flex-start;
-            box-shadow: 0 4px 20px rgba(10, 15, 29, 0.02);
+            box-shadow: 0 10px 40px -10px rgba(28, 56, 86, 0.05);
+            transition: opacity 0.6s var(--ease);
         }
 
         .instruction-box svg {
             flex-shrink: 0;
             stroke: var(--gold);
-            margin-top: 2px;
+            margin-top: 4px;
+            width: 24px;
+            height: 24px;
+            opacity: 0.8;
         }
 
         .instruction-box p {
-            font-size: 14px;
+            font-size: 14.5px;
             color: var(--ink-60);
             font-weight: 300;
-            line-height: 1.6;
+            line-height: 1.7;
             margin: 0;
         }
 
         .instruction-box strong {
             color: var(--navy);
-            font-weight: 500;
+            font-weight: 400;
             display: block;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
+            font-size: 15px;
+            letter-spacing: 0.02em;
         }
 
         .voter-info {
             max-width: 800px;
-            margin: 0 auto 3rem;
+            margin: 0 auto 4rem;
             padding: 0 2rem;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
+            transition: opacity 0.6s var(--ease);
         }
 
         .voter-info label {
             font-family: var(--f-mono);
-            font-size: 11px;
-            letter-spacing: 0.15em;
+            font-size: 10px;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--navy);
+            font-weight: 500;
+            margin-bottom: 4px;
         }
 
         .voter-info input {
             width: 100%;
-            padding: 1rem 1.5rem;
-            border: 1px solid var(--ink-18);
-            border-radius: var(--radius-sm);
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(10px);
+            padding: 1.2rem 0;
+            border: none;
+            border-bottom: 1px solid var(--ink-18);
+            background: transparent;
             font-family: var(--f-body);
-            font-size: 15px;
+            font-size: 18px;
             color: var(--ink);
-            transition: var(--ease) 0.3s;
+            transition: border-color 0.4s var(--ease);
+            border-radius: 0;
         }
 
         .voter-info input:focus {
             outline: none;
-            border-color: var(--gold);
-            background: #FFFFFF;
-            box-shadow: 0 4px 20px rgba(191, 151, 90, 0.15);
+            border-bottom: 2px solid var(--navy);
         }
 
         .voter-info input::placeholder {
             color: var(--ink-40);
             font-weight: 300;
+            font-size: 16px;
         }
 
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
+            transition: opacity 0.6s var(--ease);
         }
 
         .card-label {
@@ -196,166 +221,199 @@
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.65);
-            backdrop-filter: blur(14px);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
             border-radius: var(--radius-sm);
             border: 1px solid var(--ink-08);
             overflow: hidden;
-            box-shadow: 0 6px 32px rgba(10, 15, 29, 0.02);
-            transition: var(--ease) 0.5s;
+            box-shadow: 0 4px 24px rgba(10, 15, 29, 0.03);
+            transition: all 0.6s var(--ease);
             height: 100%;
             display: flex;
             flex-direction: column;
             position: relative;
+            transform: translateY(0);
         }
 
         .card::before {
             content: '';
-            position: absolute; top: 0; left: 0; right: 0; height: 2px;
-            background: linear-gradient(90deg, var(--gold), transparent);
-            transform: scaleX(0); transform-origin: left;
-            transition: transform 0.45s var(--ease);
-            z-index: 10;
-        }
-
-        .card::after {
-            content: '';
-            position: absolute; bottom: 0; left: 0; right: 0; height: 4px;
+            position: absolute; top: 0; left: 0; right: 0; height: 3px;
             background: var(--gold);
-            transform: scaleX(0); transform-origin: center;
-            transition: transform 0.45s var(--ease);
+            transform: scaleX(0); transform-origin: left;
+            transition: transform 0.6s var(--ease);
             z-index: 10;
         }
 
         .card:hover {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 12px 48px rgba(10, 15, 29, 0.06);
-            transform: translateY(-4px);
+            background: #FFFFFF;
+            box-shadow: 0 16px 40px -8px rgba(28, 56, 86, 0.08);
+            transform: translateY(-6px);
+            border-color: rgba(191,151,90,0.3);
         }
 
-        .card:hover::before { transform: scaleX(1); }
-
         .card-label input[type="checkbox"]:checked + .card {
-            border-color: rgba(28, 56, 86, 0.4);
+            border-color: var(--navy);
             background-color: #FFFFFF;
-            box-shadow: 0 16px 48px rgba(28, 56, 86, 0.12);
-            transform: translateY(-4px);
+            box-shadow: 0 20px 48px -10px rgba(28, 56, 86, 0.15);
+            transform: translateY(-6px);
         }
 
         .card-label input[type="checkbox"]:checked + .card::before {
-            background: linear-gradient(90deg, var(--navy), var(--navy-2));
-            transform: scaleX(1);
-        }
-
-        .card-label input[type="checkbox"]:checked + .card::after {
+            background: var(--navy);
             transform: scaleX(1);
         }
 
         .card-image-wrapper {
             width: 100%;
-            height: 180px;
+            height: 200px;
             background-color: var(--ink-08);
             overflow: hidden;
-            border-bottom: 1px solid var(--ink-08);
             position: relative;
         }
 
         .card-image-wrapper img {
             width: 100%; height: 100%; object-fit: cover;
-            filter: grayscale(100%) contrast(1.1);
-            opacity: 0.85;
-            transition: var(--ease) 0.6s;
+            filter: grayscale(100%) contrast(1.05) brightness(1.05);
+            opacity: 0.8;
+            transition: all 0.8s var(--ease);
+            transform: scale(1.02);
         }
 
         .card:hover .card-image-wrapper img,
         .card-label input[type="checkbox"]:checked + .card .card-image-wrapper img {
-            filter: grayscale(0%) contrast(1);
+            filter: grayscale(0%) contrast(1) brightness(1);
             opacity: 1;
-            transform: scale(1.05);
+            transform: scale(1.06);
+        }
+
+        .card-image-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 30%);
+            z-index: 1;
+            pointer-events: none;
         }
 
         .selection-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, rgba(10,15,29,0.5) 0%, transparent 50%);
+            background: linear-gradient(to bottom, rgba(28,56,86,0.85) 0%, transparent 60%);
             opacity: 0;
-            transition: var(--ease) 0.4s;
+            transition: opacity 0.5s var(--ease);
             display: flex;
-            padding: 1rem;
+            padding: 1.5rem;
             align-items: flex-start;
             justify-content: flex-end;
             z-index: 2;
         }
 
         .selection-badge {
-            background: var(--navy);
-            color: white;
-            padding: 6px 14px;
+            background: #FFFFFF;
+            color: var(--navy);
+            padding: 8px 16px;
             border-radius: 40px;
             display: flex;
             align-items: center;
             gap: 8px;
             font-family: var(--f-mono);
-            font-size: 8.5px;
-            letter-spacing: 0.15em;
-            transform: translateY(-15px);
-            transition: var(--ease) 0.5s;
-            box-shadow: 0 4px 16px rgba(10,15,29,0.3);
+            font-size: 9px;
+            letter-spacing: 0.2em;
+            font-weight: 500;
+            transform: translateY(-20px);
+            transition: all 0.6s var(--ease);
+            box-shadow: 0 8px 24px rgba(10,15,29,0.15);
         }
 
         .selection-badge svg {
-            width: 10px; height: 10px;
-            stroke: var(--gold);
-            stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round;
+            width: 12px; height: 12px;
+            stroke: var(--navy);
+            stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round;
         }
 
         .card-label input[type="checkbox"]:checked + .card .selection-overlay { opacity: 1; }
         .card-label input[type="checkbox"]:checked + .card .selection-badge { transform: translateY(0); }
 
         .card-content {
-            padding: 1.8rem 1.5rem;
+            padding: 0 1.8rem 2rem;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
+            z-index: 2;
+            position: relative;
         }
 
         .card-title {
-            font-family: var(--f-display); font-size: clamp(20px, 1.8vw, 24px); font-weight: 400;
-            color: var(--ink); line-height: 1.1; margin-bottom: 1.2rem;
+            font-family: var(--f-display); 
+            font-size: clamp(22px, 2vw, 26px); 
+            font-weight: 400;
+            color: var(--navy); 
+            line-height: 1.2; 
+            margin-bottom: 1.5rem;
         }
 
-        .candidates { margin-bottom: 1.2rem; display: flex; flex-direction: column; gap: 8px; }
-        .candidates div { display: flex; flex-direction: column; gap: 2px; }
-        .candidates .role { font-family: var(--f-mono); font-size: 8px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
-        .candidates .name { font-size: 14px; font-weight: 400; color: var(--ink); }
-        .proposal { font-size: 13.5px; color: var(--ink-60); font-weight: 300; line-height: 1.7; margin-top: auto; border-top: 1px solid var(--ink-08); padding-top: 1.2rem; }
+        .candidates { margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 12px; }
+        .candidates div { display: flex; flex-direction: column; gap: 4px; }
+        .candidates .role { 
+            font-family: var(--f-mono); 
+            font-size: 9px; 
+            letter-spacing: 0.2em; 
+            text-transform: uppercase; 
+            color: var(--gold); 
+            font-weight: 500;
+        }
+        .candidates .name { 
+            font-size: 15px; 
+            font-weight: 400; 
+            color: var(--ink); 
+            letter-spacing: 0.01em;
+        }
+        
+        .proposal { 
+            font-size: 14px; 
+            color: var(--ink-60); 
+            font-weight: 300; 
+            line-height: 1.6; 
+            margin-top: auto; 
+            border-top: 1px solid var(--ink-08); 
+            padding-top: 1.5rem; 
+        }
 
         .action-panel {
             position: fixed; bottom: 0; left: 0; width: 100%;
-            background: rgba(243, 237, 226, 0.94);
-            backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-top: 1px solid var(--ink-08);
-            padding: 1.5rem 3rem;
-            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.04);
+            background: rgba(248, 245, 240, 0.85);
+            backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border-top: 1px solid rgba(255,255,255,0.4);
+            padding: 1.5rem 4rem;
+            box-shadow: 0 -15px 40px rgba(28, 56, 86, 0.04);
             display: flex; justify-content: space-between; align-items: center; z-index: 100;
+            transition: transform 0.6s var(--ease), opacity 0.6s var(--ease);
         }
 
-        .counter-container { display: flex; flex-direction: column; gap: 10px; }
-        .counter-text { font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-60); transition: color 0.3s ease; }
+        .counter-container { display: flex; flex-direction: column; gap: 12px; }
+        .counter-text { 
+            font-family: var(--f-mono); 
+            font-size: 11px; 
+            letter-spacing: 0.2em; 
+            text-transform: uppercase; 
+            color: var(--ink-60); 
+            transition: color 0.4s ease; 
+        }
         .counter-text.complete { color: var(--navy); font-weight: 500; }
 
-        .progress-segments { display: flex; gap: 6px; }
-        .segment { height: 4px; width: 28px; background: var(--ink-08); border-radius: 2px; transition: var(--ease) 0.4s; }
-        .segment.filled { background: var(--navy); box-shadow: 0 0 8px rgba(28, 56, 86, 0.3); }
+        .progress-segments { display: flex; gap: 8px; }
+        .segment { height: 3px; width: 32px; background: var(--ink-18); border-radius: 4px; transition: background-color 0.5s var(--ease), box-shadow 0.5s var(--ease); }
+        .segment.filled { background: var(--gold); box-shadow: 0 0 10px rgba(191,151,90, 0.4); }
 
         .btn-submit {
             background: var(--navy); color: white; border: 1px solid var(--navy);
-            padding: 0.9rem 2.5rem; font-size: 13px; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase;
-            border-radius: var(--radius-sm); cursor: pointer; transition: var(--ease) 0.3s; font-family: var(--f-body);
+            padding: 1.2rem 3rem; font-size: 12px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+            border-radius: var(--radius-sm); cursor: pointer; transition: all 0.4s var(--ease); font-family: var(--f-mono);
+            box-shadow: 0 10px 24px -8px rgba(28, 56, 86, 0.4);
         }
 
-        .btn-submit:disabled { background: var(--ink-08); border-color: transparent; color: var(--ink-40); cursor: not-allowed; }
-        .btn-submit:not(:disabled):hover { background: var(--ink); border-color: var(--ink); box-shadow: 0 8px 24px rgba(10, 15, 29, 0.15); }
+        .btn-submit:disabled { background: transparent; border-color: var(--ink-18); color: var(--ink-40); cursor: not-allowed; box-shadow: none; }
+        .btn-submit:not(:disabled):hover { background: var(--navy-2); transform: translateY(-2px); box-shadow: 0 15px 30px -10px rgba(28, 56, 86, 0.6); }
 
         .loader-container {
             grid-column: 1 / -1;
@@ -363,62 +421,128 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 4rem 0;
-            gap: 1rem;
+            padding: 6rem 0;
+            gap: 1.5rem;
         }
         
         .loader {
-            width: 24px; height: 24px;
-            border: 2px solid var(--ink-18);
+            width: 32px; height: 32px;
+            border: 2px solid var(--ink-08);
             border-top-color: var(--gold);
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            animation: spin 1s cubic-bezier(0.6, 0.2, 0.4, 0.8) infinite;
+        }
+
+        /* --- NUEVO: ESTADO DE ÉXITO --- */
+        .success-state {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            max-width: 680px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s var(--ease) forwards;
+        }
+
+        .success-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #FFFFFF;
+            border: 1px solid rgba(191,151,90,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 16px 40px -8px rgba(191,151,90,0.2);
+        }
+
+        .success-icon-wrapper svg {
+            width: 36px;
+            height: 36px;
+            stroke: var(--gold);
+        }
+
+        .success-state h2 {
+            font-family: var(--f-display);
+            font-size: clamp(32px, 4vw, 46px);
+            font-weight: 300;
+            color: var(--navy);
+            margin-bottom: 1.2rem;
+            line-height: 1.1;
+        }
+
+        .success-state p {
+            font-size: 16px;
+            color: var(--ink-60);
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .form-hidden {
+            opacity: 0 !important;
+            pointer-events: none;
+            position: absolute;
+            visibility: hidden;
+        }
+
+        .panel-hidden {
+            transform: translateY(100%);
+            opacity: 0;
+            pointer-events: none;
         }
         
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
         @keyframes gentle-shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-4px); }
-            50% { transform: translateX(4px); }
-            75% { transform: translateX(-4px); }
-            100% { transform: translateX(0); }
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-4px); }
+            40%, 80% { transform: translateX(4px); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        .shake { animation: gentle-shake 0.4s ease-in-out; color: var(--gold) !important; }
+        .shake { animation: gentle-shake 0.5s var(--ease); color: var(--gold) !important; }
 
         @media (max-width: 768px) {
-            .action-panel { flex-direction: column; gap: 1.5rem; padding: 1.5rem; text-align: center; }
+            .header { padding: 4rem 1.5rem 2rem; }
+            .action-panel { flex-direction: column; gap: 2rem; padding: 1.5rem; text-align: center; }
             .counter-container { align-items: center; }
-            .instruction-box { margin: 0 1rem 3rem; }
-            .voter-info { padding: 0 1rem; }
+            .instruction-box { margin: 0 1.5rem 3rem; flex-direction: column; gap: 12px; }
+            .voter-info { padding: 0 1.5rem; }
+            .grid-container { padding: 0 1.5rem; gap: 1.5rem; }
+            .segment { width: 24px; }
         }
     </style>
 </head>
 <body>
 
-    <header class="header">
+    <header class="header" id="main-header">
         <div class="eyebrow">Comité Promotor · Sabana Centro Oriente</div>
         <h1>Conformación de la Junta Directiva</h1>
         <p>Tu voz es el principio del crecimiento. Respalda exactamente a los <em>7 equipos</em> que guiarán la visión de nuestra región.</p>
     </header>
 
     <main>
-        <div class="instruction-box">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <div class="instruction-box" id="instruction-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="10"></circle>
                 <line x1="12" y1="16" x2="12" y2="12"></line>
                 <line x1="12" y1="8" x2="12.01" y2="8"></line>
             </svg>
-            <p>
+            <div>
                 <strong>Guía de participación</strong>
-                Haz clic sobre la tarjeta de una plancha para respaldarla. Si deseas cambiar de opinión, simplemente vuelve a hacer clic sobre la misma tarjeta para retirar tu selección.
-            </p>
+                <p>Haz clic sobre la tarjeta de una plancha para respaldarla. Si deseas cambiar de opinión, simplemente vuelve a hacer clic sobre la misma tarjeta para retirar tu selección.</p>
+            </div>
         </div>
 
         <form id="voting-form">
-            
-            <div class="voter-info">
+            <div class="voter-info" id="voter-info">
                 <label for="nombreCandidato">Identificación del Votante</label>
                 <input type="text" id="nombreCandidato" name="nombre" placeholder="Ingresa tu nombre completo" required>
             </div>
@@ -426,11 +550,11 @@
             <div class="grid-container" id="tarjetas-container">
                 <div class="loader-container">
                     <div class="loader"></div>
-                    <p style="font-family: var(--f-mono); font-size: 10px; letter-spacing: 0.15em; color: var(--ink-60); text-transform: uppercase;">Estructurando propuestas...</p>
+                    <p style="font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.2em; color: var(--ink-60); text-transform: uppercase;">Estructurando propuestas...</p>
                 </div>
             </div>
 
-            <div class="action-panel">
+            <div class="action-panel" id="action-panel">
                 <div class="counter-container">
                     <div class="progress-segments" id="progress-segments">
                         <div class="segment"></div>
@@ -446,6 +570,18 @@
                 <button type="submit" id="submit-btn" class="btn-submit" disabled>Confirmar y Enviar Votación</button>
             </div>
         </form>
+
+        <div class="success-state" id="success-state">
+            <div class="success-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+            </div>
+            <h2>Participación Registrada</h2>
+            <p>Agradecemos tu respaldo. Tu visión es una pieza fundamental para consolidar la estructura y el futuro de nuestra región. Hemos registrado tu selección correctamente.</p>
+        </div>
+
     </main>
 
     <script>
@@ -456,9 +592,16 @@
             const segments = document.querySelectorAll('.segment');
             const submitBtn = document.getElementById('submit-btn');
             const nombreInput = document.getElementById('nombreCandidato');
-            const MAX_SELECTION = 7;
             
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbwJcDHhZYp2Lnx0BX-rU7CQUx6MB1Cia5F52KrGW8mjOMvLFa0uTqQI4CNo8d4cA4joKQ/exec';
+            // Elementos para el estado de éxito
+            const actionPanel = document.getElementById('action-panel');
+            const instructionBox = document.getElementById('instruction-box');
+            const voterInfo = document.getElementById('voter-info');
+            const mainHeader = document.getElementById('main-header');
+            const successState = document.getElementById('success-state');
+
+            const MAX_SELECTION = 7;
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwr-a_qu44qO2KHLZJ9AAhOESl7n7DviOup1N4TL85Y7KBJEEbNxQT_KIkMkS3_W5B9Vw/exec';
 
             // 1. Obtener los datos dinámicos
             fetch(scriptURL)
@@ -472,11 +615,10 @@
                     container.innerHTML = '<p style="text-align:center; grid-column: 1/-1;">Error al cargar.</p>';
                 });
 
-            // 2. Generar tarjetas (Con conexión directa a GitHub)
+            // 2. Generar tarjetas
             function generarTarjetas(candidatos) {
                 let html = '';
                 candidatos.forEach(c => {
-                    // Normalizamos los datos de cada candidato
                     const dataNormalizada = {};
                     Object.keys(c).forEach(key => {
                         dataNormalizada[key.toLowerCase().trim()] = c[key];
@@ -487,8 +629,7 @@
                     const sup = dataNormalizada.suplente || 'Por definir';
                     const pro = dataNormalizada.propuesta || 'Descripción de la propuesta.';
 
-                    // Ruta configurada para tu repositorio específico
-                    const imgUrl = `https://raw.githubusercontent.com/DanielFH-blip/Encuesta-Comite-Promotor/main/plancha_${num}.jpg`;
+                    const imgUrl = `https://github.com/DanielFH-blip/Encuesta-Comite-Promotor/blob/main/plancha_${num}.jpg`;
                     const numFmt = num.toString().padStart(2, '0');
 
                     html += `
@@ -554,7 +695,8 @@
                 e.preventDefault();
                 const nombreValor = nombreInput.value.trim();
                 submitBtn.disabled = true;
-                submitBtn.textContent = 'Registrando respaldos...';
+                submitBtn.textContent = 'Procesando...';
+                
                 const seleccionadas = [];
                 document.querySelectorAll('.plancha-checkbox:checked').forEach(cb => seleccionadas.push(cb.value));
                 const payload = { nombre: nombreValor, planchasSeleccionadas: seleccionadas };
@@ -565,10 +707,19 @@
                     body: JSON.stringify(payload)
                 })
                 .then(() => {
-                    submitBtn.textContent = '¡Voces Registradas con Éxito!';
-                    submitBtn.style.background = 'var(--navy-2)';
-                    document.querySelectorAll('.plancha-checkbox').forEach(cb => cb.disabled = true);
-                    nombreInput.disabled = true;
+                    // Transición al estado de éxito
+                    instructionBox.classList.add('form-hidden');
+                    voterInfo.classList.add('form-hidden');
+                    container.classList.add('form-hidden');
+                    mainHeader.classList.add('form-hidden');
+                    actionPanel.classList.add('panel-hidden');
+                    
+                    // Mostrar mensaje y quitar el padding extra del body
+                    setTimeout(() => {
+                        document.body.style.paddingBottom = '0';
+                        successState.style.display = 'flex';
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }, 400); // Espera a que termine la transición de opacidad
                 })
                 .catch(() => {
                     submitBtn.disabled = false;
