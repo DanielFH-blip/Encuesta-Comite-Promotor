@@ -1,4 +1,40 @@
-mapaulayoshida@gmail.com            line-height: 1.6;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selección de Representantes | Cámara de Comercio Sabana Centro Oriente</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg:           #F8F5F0; 
+            --navy:         #1C3856;
+            --navy-2:       #2B527A;
+            --gold:         #BF975A;
+            --gold-pale:    rgba(191,151,90,0.06);
+            --ink:          #0A0F1D;
+            --ink-60:       rgba(10,15,29,0.60);
+            --ink-40:       rgba(10,15,29,0.40);
+            --ink-18:       rgba(10,15,29,0.18);
+            --ink-08:       rgba(10,15,29,0.06);
+            --f-display:    'Cormorant Garamond', Georgia, serif;
+            --f-body:       'DM Sans', system-ui, sans-serif;
+            --f-mono:       'DM Mono', monospace;
+            --ease:         cubic-bezier(0.16, 1, 0.3, 1); 
+            --radius-sm:    6px; 
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--f-body);
+            background-color: var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
             padding-bottom: 160px; 
             position: relative;
             -webkit-font-smoothing: antialiased;
@@ -35,6 +71,665 @@ mapaulayoshida@gmail.com            line-height: 1.6;
         }
 
         .eyebrow {
+            font-family: var(--f-mono);
+            font-size: clamp(9px, 0.7vw, 11px);
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .eyebrow::before, .eyebrow::after {
+            content: ''; display: block; width: 40px; height: 1px;
+            background: currentColor; opacity: 0.4;
+        }
+
+        .header h1 {
+            font-family: var(--f-display);
+            font-size: clamp(36px, 4.5vw, 56px);
+            font-weight: 300;
+            letter-spacing: -0.01em;
+            line-height: 1.15;
+            color: var(--navy);
+            margin-bottom: 1.2rem;
+        }
+
+        .header h1 em { 
+            font-style: italic; 
+            color: var(--gold); 
+            font-weight: 400;
+        }
+        
+        .header p { 
+            font-size: clamp(15px, 1.3vw, 18px); 
+            font-weight: 300; 
+            color: var(--ink-60); 
+            max-width: 640px; 
+            margin: 0 auto; 
+            line-height: 1.7;
+        }
+
+        .instruction-box {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            background: #FFFFFF;
+            border-left: 3px solid var(--gold);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            padding: 1.5rem 2rem;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            box-shadow: 0 10px 40px -10px rgba(28, 56, 86, 0.05);
+            transition: opacity 0.6s var(--ease);
+        }
+
+        .instruction-box svg {
+            flex-shrink: 0;
+            stroke: var(--gold);
+            margin-top: 4px;
+            width: 24px;
+            height: 24px;
+            opacity: 0.8;
+        }
+
+        .instruction-box p {
+            font-size: 14.5px;
+            color: var(--ink-60);
+            font-weight: 300;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .instruction-box strong {
+            color: var(--navy);
+            font-weight: 400;
+            display: block;
+            margin-bottom: 6px;
+            font-size: 15px;
+            letter-spacing: 0.02em;
+        }
+
+        .voter-info {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: opacity 0.6s var(--ease);
+        }
+
+        .voter-info label {
+            font-family: var(--f-mono);
+            font-size: 10px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--navy);
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .voter-info input {
+            width: 100%;
+            padding: 1.2rem 0;
+            border: none;
+            border-bottom: 1px solid var(--ink-18);
+            background: transparent;
+            font-family: var(--f-body);
+            font-size: 18px;
+            color: var(--ink);
+            transition: border-color 0.4s var(--ease);
+            border-radius: 0;
+        }
+
+        .voter-info input:focus {
+            outline: none;
+            border-bottom: 2px solid var(--navy);
+        }
+
+        .voter-info input::placeholder {
+            color: var(--ink-40);
+            font-weight: 300;
+            font-size: 16px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            transition: opacity 0.6s var(--ease);
+        }
+
+        .card-label {
+            display: block;
+            cursor: pointer;
+            position: relative;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .card-label input[type="checkbox"] {
+            position: absolute; opacity: 0; width: 0; height: 0;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--ink-08);
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(10, 15, 29, 0.03);
+            transition: all 0.6s var(--ease);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transform: translateY(0);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: var(--gold);
+            transform: scaleX(0); transform-origin: left;
+            transition: transform 0.6s var(--ease);
+            z-index: 10;
+        }
+
+        .card:hover {
+            background: #FFFFFF;
+            box-shadow: 0 16px 40px -8px rgba(28, 56, 86, 0.08);
+            transform: translateY(-6px);
+            border-color: rgba(191,151,90,0.3);
+        }
+
+        .card-label input[type="checkbox"]:checked + .card {
+            border-color: var(--navy);
+            background-color: #FFFFFF;
+            box-shadow: 0 20px 48px -10px rgba(28, 56, 86, 0.15);
+            transform: translateY(-6px);
+        }
+
+        .card-label input[type="checkbox"]:checked + .card::before {
+            background: var(--navy);
+            transform: scaleX(1);
+        }
+
+        .card-image-wrapper {
+            width: 100%;
+            height: 200px;
+            background-color: var(--ink-08);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-image-wrapper img {
+            width: 100%; height: 100%; object-fit: cover;
+            filter: contrast(1.05) brightness(1.05);
+            opacity: 1;
+            transition: all 0.8s var(--ease);
+            transform: scale(1.02);
+        }
+
+        .card:hover .card-image-wrapper img,
+        .card-label input[type="checkbox"]:checked + .card .card-image-wrapper img {
+            filter: contrast(1) brightness(1);
+            opacity: 1;
+            transform: scale(1.06);
+        }
+
+        .card-image-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 30%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .selection-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(28,56,86,0.85) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.5s var(--ease);
+            display: flex;
+            padding: 1.5rem;
+            align-items: flex-start;
+            justify-content: flex-end;
+            z-index: 2;
+        }
+
+        .selection-badge {
+            background: #FFFFFF;
+            color: var(--navy);
+            padding: 8px 16px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--f-mono);
+            font-size: 9px;
+            letter-spacing: 0.2em;
+            font-weight: 500;
+            transform: translateY(-20px);
+            transition: all 0.6s var(--ease);
+            box-shadow: 0 8px 24px rgba(10,15,29,0.15);
+        }
+
+        .selection-badge svg {
+            width: 12px; height: 12px;
+            stroke: var(--navy);
+            stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round;
+        }
+
+        .card-label input[type="checkbox"]:checked + .card .selection-overlay { opacity: 1; }
+        .card-label input[type="checkbox"]:checked + .card .selection-badge { transform: translateY(0); }
+
+        .card-content {
+            padding: 0 1.8rem 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            z-index: 2;
+            position: relative;
+        }
+
+        .card-title {
+            font-family: var(--f-display); 
+            font-size: clamp(22px, 2vw, 26px); 
+            font-weight: 400;
+            color: var(--navy); 
+            line-height: 1.2; 
+            margin-bottom: 1.5rem;
+        }
+
+        .candidates { margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 12px; }
+        .candidates div { display: flex; flex-direction: column; gap: 4px; }
+        .candidates .role { 
+            font-family: var(--f-mono); 
+            font-size: 9px; 
+            letter-spacing: 0.2em; 
+            text-transform: uppercase; 
+            color: var(--gold); 
+            font-weight: 500;
+        }
+        .candidates .name { 
+            font-size: 15px; 
+            font-weight: 400; 
+            color: var(--ink); 
+            letter-spacing: 0.01em;
+        }
+        
+        .proposal { 
+            font-size: 14px; 
+            color: var(--ink-60); 
+            font-weight: 300; 
+            line-height: 1.6; 
+            margin-top: auto; 
+            border-top: 1px solid var(--ink-08); 
+            padding-top: 1.5rem; 
+        }
+
+        .action-panel {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: rgba(248, 245, 240, 0.85);
+            backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border-top: 1px solid rgba(255,255,255,0.4);
+            padding: 1.5rem 4rem;
+            box-shadow: 0 -15px 40px rgba(28, 56, 86, 0.04);
+            display: flex; justify-content: space-between; align-items: center; z-index: 100;
+            transition: transform 0.6s var(--ease), opacity 0.6s var(--ease);
+        }
+
+        .counter-container { display: flex; flex-direction: column; gap: 12px; }
+        .counter-text { 
+            font-family: var(--f-mono); 
+            font-size: 11px; 
+            letter-spacing: 0.2em; 
+            text-transform: uppercase; 
+            color: var(--ink-60); 
+            transition: color 0.4s ease; 
+        }
+        .counter-text.complete { color: var(--navy); font-weight: 500; }
+
+        .progress-segments { display: flex; gap: 8px; }
+        .segment { height: 3px; width: 32px; background: var(--ink-18); border-radius: 4px; transition: background-color 0.5s var(--ease), box-shadow 0.5s var(--ease); }
+        .segment.filled { background: var(--gold); box-shadow: 0 0 10px rgba(191,151,90, 0.4); }
+
+        .btn-submit {
+            background: var(--navy); color: white; border: 1px solid var(--navy);
+            padding: 1.2rem 3rem; font-size: 12px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+            border-radius: var(--radius-sm); cursor: pointer; transition: all 0.4s var(--ease); font-family: var(--f-mono);
+            box-shadow: 0 10px 24px -8px rgba(28, 56, 86, 0.4);
+        }
+
+        .btn-submit:disabled { background: transparent; border-color: var(--ink-18); color: var(--ink-40); cursor: not-allowed; box-shadow: none; }
+        .btn-submit:not(:disabled):hover { background: var(--navy-2); transform: translateY(-2px); box-shadow: 0 15px 30px -10px rgba(28, 56, 86, 0.6); }
+
+        .loader-container {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 0;
+            gap: 1.5rem;
+        }
+        
+        .loader {
+            width: 32px; height: 32px;
+            border: 2px solid var(--ink-08);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 1s cubic-bezier(0.6, 0.2, 0.4, 0.8) infinite;
+        }
+
+        /* --- NUEVO: ESTADO DE ÉXITO --- */
+        .success-state {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem 2rem;
+            max-width: 680px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s var(--ease) forwards;
+        }
+
+        .success-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #FFFFFF;
+            border: 1px solid rgba(191,151,90,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 16px 40px -8px rgba(191,151,90,0.2);
+        }
+
+        .success-icon-wrapper svg {
+            width: 36px;
+            height: 36px;
+            stroke: var(--gold);
+        }
+
+        .success-state h2 {
+            font-family: var(--f-display);
+            font-size: clamp(32px, 4vw, 46px);
+            font-weight: 300;
+            color: var(--navy);
+            margin-bottom: 1.2rem;
+            line-height: 1.1;
+        }
+
+        .success-state p {
+            font-size: 16px;
+            color: var(--ink-60);
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .form-hidden {
+            opacity: 0 !important;
+            pointer-events: none;
+            position: absolute;
+            visibility: hidden;
+        }
+
+        .panel-hidden {
+            transform: translateY(100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        @keyframes gentle-shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-4px); }
+            40%, 80% { transform: translateX(4px); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .shake { animation: gentle-shake 0.5s var(--ease); color: var(--gold) !important; }
+
+        @media (max-width: 768px) {
+            .header { padding: 4rem 1.5rem 2rem; }
+            .action-panel { flex-direction: column; gap: 2rem; padding: 1.5rem; text-align: center; }
+            .counter-container { align-items: center; }
+            .instruction-box { margin: 0 1.5rem 3rem; flex-direction: column; gap: 12px; }
+            .voter-info { padding: 0 1.5rem; }
+            .grid-container { padding: 0 1.5rem; gap: 1.5rem; }
+            .segment { width: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header" id="main-header">
+        <div class="eyebrow">Comité Promotor · Sabana Centro Oriente</div>
+        <h1>Conformación de la Junta Directiva</h1>
+        <p>Tu voz es el principio del crecimiento. Respalda exactamente a los <em>7 equipos</em> que guiarán la visión de nuestra región.</p>
+    </header>
+
+    <main>
+        <div class="instruction-box" id="instruction-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <div>
+                <strong>Guía de participación</strong>
+                <p>Haz clic sobre la tarjeta de una plancha para respaldarla. Si deseas cambiar de opinión, simplemente vuelve a hacer clic sobre la misma tarjeta para retirar tu selección.</p>
+            </div>
+        </div>
+
+        <form id="voting-form">
+            <div class="voter-info" id="voter-info">
+                <label for="nombreCandidato">Identificación del Votante</label>
+                <input type="text" id="nombreCandidato" name="nombre" placeholder="Ingresa tu nombre completo" required>
+            </div>
+
+            <div class="grid-container" id="tarjetas-container">
+                <div class="loader-container">
+                    <div class="loader"></div>
+                    <p style="font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.2em; color: var(--ink-60); text-transform: uppercase;">Estructurando propuestas...</p>
+                </div>
+            </div>
+
+            <div class="action-panel" id="action-panel">
+                <div class="counter-container">
+                    <div class="progress-segments" id="progress-segments">
+                        <div class="segment"></div>
+                        <div class="segment"></div>
+                        <div class="segment"></div>
+                        <div class="segment"></div>
+                        <div class="segment"></div>
+                        <div class="segment"></div>
+                        <div class="segment"></div>
+                    </div>
+                    <span class="counter-text" id="counter-text">0 DE 7 EQUIPOS RESPALDADOS</span>
+                </div>
+                <button type="submit" id="submit-btn" class="btn-submit" disabled>Confirmar y Enviar Votación</button>
+            </div>
+        </form>
+
+        <div class="success-state" id="success-state">
+            <div class="success-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+            </div>
+            <h2>Participación Registrada</h2>
+            <p>Agradecemos tu respaldo. Tu visión es una pieza fundamental para consolidar la estructura y el futuro de nuestra región. Hemos registrado tu selección correctamente.</p>
+        </div>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('voting-form');
+            const container = document.getElementById('tarjetas-container');
+            const counterText = document.getElementById('counter-text');
+            const segments = document.querySelectorAll('.segment');
+            const submitBtn = document.getElementById('submit-btn');
+            const nombreInput = document.getElementById('nombreCandidato');
+            
+            // Elementos para el estado de éxito
+            const actionPanel = document.getElementById('action-panel');
+            const instructionBox = document.getElementById('instruction-box');
+            const voterInfo = document.getElementById('voter-info');
+            const mainHeader = document.getElementById('main-header');
+            const successState = document.getElementById('success-state');
+
+            const MAX_SELECTION = 7;
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwr-a_qu44qO2KHLZJ9AAhOESl7n7DviOup1N4TL85Y7KBJEEbNxQT_KIkMkS3_W5B9Vw/exec';
+
+            // 1. Obtener los datos dinámicos
+            fetch(scriptURL)
+                .then(response => response.json())
+                .then(data => {
+                    generarTarjetas(data);
+                    activarLogicaCheckboxes();
+                })
+                .catch(error => {
+                    console.error('Error cargando:', error);
+                    container.innerHTML = '<p style="text-align:center; grid-column: 1/-1;">Error al cargar.</p>';
+                });
+
+            // 2. Generar tarjetas
+            function generarTarjetas(candidatos) {
+                let html = '';
+                candidatos.forEach(c => {
+                    const dataNormalizada = {};
+                    Object.keys(c).forEach(key => {
+                        dataNormalizada[key.toLowerCase().trim()] = c[key];
+                    });
+
+                    const num = dataNormalizada.numero || 0;
+                    const tit = dataNormalizada.titular || 'Por definir';
+                    const sup = dataNormalizada.suplente || 'Por definir';
+                    const pro = dataNormalizada.propuesta || 'Descripción de la propuesta.';
+
+                    const imgUrl = `https://raw.githubusercontent.com/DanielFH-blip/Encuesta-Comite-Promotor/main/plancha_${num}.jpg`;
+                    const numFmt = num.toString().padStart(2, '0');
+
+                    html += `
+                    <label class="card-label">
+                        <input type="checkbox" name="plancha_${num}" value="${num}" class="plancha-checkbox">
+                        <div class="card">
+                            <div class="selection-overlay">
+                                <div class="selection-badge">
+                                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <span>RESPALDADA</span>
+                                </div>
+                            </div>
+                            <div class="card-image-wrapper">
+                                <img src="${imgUrl}" alt="Candidatos Plancha ${numFmt}" onerror="this.src='https://via.placeholder.com/400x200?text=Plancha+${numFmt}'">
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title">Plancha ${numFmt}</h3>
+                                <div class="candidates">
+                                    <div><span class="role">Titular</span> <span class="name">${tit}</span></div>
+                                    <div><span class="role">Suplente</span> <span class="name">${sup}</span></div>
+                                </div>
+                                <p class="proposal">${pro}</p>
+                            </div>
+                        </div>
+                    </label>`;
+                });
+                container.innerHTML = html;
+            }
+
+            function activarLogicaCheckboxes() {
+                const checkboxes = document.querySelectorAll('.plancha-checkbox');
+                function updateInterface(selectedCount) {
+                    segments.forEach((seg, index) => {
+                        if (index < selectedCount) seg.classList.add('filled');
+                        else seg.classList.remove('filled');
+                    });
+                    if (selectedCount === MAX_SELECTION) {
+                        counterText.innerHTML = `QUÓRUM ALCANZADO: 7 DE 7 EQUIPOS LISTOS`;
+                        counterText.classList.add('complete');
+                        submitBtn.disabled = false;
+                    } else {
+                        counterText.textContent = `${selectedCount} DE ${MAX_SELECTION} EQUIPOS RESPALDADOS`;
+                        counterText.classList.remove('complete');
+                        submitBtn.disabled = true;
+                    }
+                }
+                checkboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', function() {
+                        const selectedCount = document.querySelectorAll('.plancha-checkbox:checked').length;
+                        if (selectedCount > MAX_SELECTION) {
+                            this.checked = false; 
+                            counterText.classList.remove('shake');
+                            void counterText.offsetWidth; 
+                            counterText.classList.add('shake');
+                            return; 
+                        }
+                        updateInterface(selectedCount);
+                    });
+                });
+            }
+
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+                const nombreValor = nombreInput.value.trim();
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Procesando...';
+                
+                const seleccionadas = [];
+                document.querySelectorAll('.plancha-checkbox:checked').forEach(cb => seleccionadas.push(cb.value));
+                const payload = { nombre: nombreValor, planchasSeleccionadas: seleccionadas };
+
+                fetch(scriptURL, { 
+                    method: 'POST', 
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(payload)
+                })
+                .then(() => {
+                    // Transición al estado de éxito
+                    instructionBox.classList.add('form-hidden');
+                    voterInfo.classList.add('form-hidden');
+                    container.classList.add('form-hidden');
+                    mainHeader.classList.add('form-hidden');
+                    actionPanel.classList.add('panel-hidden');
+                    
+                    // Mostrar mensaje y quitar el padding extra del body
+                    setTimeout(() => {
+                        document.body.style.paddingBottom = '0';
+                        successState.style.display = 'flex';
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }, 400); // Espera a que termine la transición de opacidad
+                })
+                .catch(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Error. Intentar nuevamente';
+                });
+            });
+        });
+    </script>
+</body>
+</html>        .eyebrow {
             font-family: var(--f-mono);
             font-size: clamp(9px, 0.7vw, 11px);
             font-weight: 500;
