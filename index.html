@@ -117,7 +117,7 @@
             line-height: 1.7;
         }
 
-        /* Pill de requisito — 7 planchas */
+        /* Pill de requisito — 1 plancha */
         .requirement-pill {
             display: inline-flex;
             align-items: center;
@@ -414,8 +414,8 @@
         /*
          * .bottom-bar es el único elemento position:fixed.
          * Contiene dos capas apiladas verticalmente:
-         *   1. .name-step  — se expande desde 0 cuando hay 7 selecciones
-         *   2. .action-panel — siempre visible, muestra contador + botón
+         * 1. .name-step  — se expande desde 0 cuando hay 1 selección
+         * 2. .action-panel — siempre visible, muestra contador + botón
          */
 
         .bottom-bar {
@@ -742,11 +742,11 @@
         <h1>Selección del <em>Comité Promotor</em></h1>
         <p>Tu voz es el principio del crecimiento. Respalda a los equipos que guiarán la visión de nuestra región.</p>
         <div class="requirement-pill">
-            <span class="req-number">7</span>
+            <span class="req-number">1</span>
             <div class="req-divider"></div>
             <div class="req-desc">
-                <span class="req-label">Planchas a seleccionar</span>
-                <span class="req-sub">Debes escoger exactamente 7 para enviar tu participación</span>
+                <span class="req-label">Plancha a seleccionar</span>
+                <span class="req-sub">Debes escoger exactamente 1 para enviar tu participación</span>
             </div>
         </div>
     </header>
@@ -759,7 +759,7 @@
                 <line x1="12" y1="8" x2="12.01" y2="8"></line>
             </svg>
             <div>
-                <strong>Selecciona exactamente 7 planchas</strong>
+                <strong>Selecciona exactamente 1 plancha</strong>
                 <p>Haz clic en cada tarjeta para respaldarla. Puedes cambiar tu selección en cualquier momento antes de enviar.</p>
             </div>
         </div>
@@ -772,14 +772,8 @@
                 </div>
             </div>
 
-            <!--
-                Barra inferior fija — dos capas apiladas:
-                1. name-step: banda dorada que aparece al completar las 7 selecciones
-                2. action-panel: contador de progreso + botón de envío (siempre visible)
-            -->
             <div class="bottom-bar" id="bottom-bar">
 
-                <!-- Banda de nombre: desliza hacia arriba al completar la selección -->
                 <div class="name-step" id="name-step">
                     <div class="name-step-inner">
                         <div class="name-step-tag">
@@ -800,23 +794,16 @@
                     </div>
                 </div>
 
-                <!-- Panel de acción: contador + botón -->
                 <div class="action-panel" id="action-panel">
                     <div class="counter-container">
                         <div class="progress-segments" id="progress-segments">
                             <div class="segment"></div>
-                            <div class="segment"></div>
-                            <div class="segment"></div>
-                            <div class="segment"></div>
-                            <div class="segment"></div>
-                            <div class="segment"></div>
-                            <div class="segment"></div>
                         </div>
                         <div class="counter-top">
                             <span class="counter-big" id="counter-big">0</span>
-                            <span class="counter-of" id="counter-of">/ 7 planchas</span>
+                            <span class="counter-of" id="counter-of">/ 1 plancha</span>
                         </div>
-                        <span class="counter-hint" id="counter-hint">Selecciona 7 planchas para continuar</span>
+                        <span class="counter-hint" id="counter-hint">Selecciona 1 plancha para continuar</span>
                     </div>
                     <button type="submit" id="submit-btn" class="btn-submit" disabled>Confirmar Participación</button>
                 </div>
@@ -854,7 +841,7 @@
             const mainHeader    = document.getElementById('main-header');
             const successState  = document.getElementById('success-state');
 
-            const MAX_SELECTION = 7;
+            const MAX_SELECTION = 1;
             const scriptURL = 'https://script.google.com/macros/s/AKfycbwr-a_qu44qO2KHLZJ9AAhOESl7n7DviOup1N4TL85Y7KBJEEbNxQT_KIkMkS3_W5B9Vw/exec';
 
             // 1. Cargar datos
@@ -895,7 +882,7 @@
                     const sup = dataNormalizada.suplente || 'Por definir';
                     const pro = dataNormalizada.propuesta || 'Descripción de la propuesta.';
 
-                    const imgUrl = `https://raw.githubusercontent.com/DanielFH-blip/Encuesta-Comite-Promotor/main/plancha_${num}.jpg`;
+                    const imgUrl = `https://raw.githubusercontent.com/DanielFH-blip/Encuesta-Comite-Promotor/main/planchas_${num}.jpg`;
                     const numFmt = num.toString().padStart(2, '0');
 
                     html += `
@@ -926,7 +913,7 @@
                 container.innerHTML = html;
             }
 
-            // Validación combinada: nombre + 7 selecciones
+            // Validación combinada: nombre + 1 selección
             function checkSubmitReady() {
                 const selectedCount = document.querySelectorAll('.plancha-checkbox:checked').length;
                 const nombre = nombreInput.value.trim();
@@ -960,7 +947,7 @@
                         const restantes = MAX_SELECTION - selectedCount;
                         counterBig.classList.remove('complete');
                         counterHint.textContent = restantes === MAX_SELECTION
-                            ? 'Selecciona 7 planchas para continuar'
+                            ? 'Selecciona 1 plancha para continuar'
                             : `Falta${restantes === 1 ? '' : 'n'} ${restantes} plancha${restantes === 1 ? '' : 's'}`;
                         counterHint.classList.remove('complete');
                         submitBtn.disabled = true;
